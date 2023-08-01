@@ -7,30 +7,18 @@
     </div>
   </div>
 
-
   <div class="row">
-    <div class="col">
-      <%= simple_form_for :search, url: mushrooms_path, method: :get do |f| %>
-        <div class="search-form-control form-group">
-          <input class="form-control string required" type="text" name="search[query]" id="search_query" />
-          <button type="submit" class="btn btn-flat">
-            <i class="fas fa-search"></i> Search
-          </button>
-        </div>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <h2>Filters</h2>
+    <div class="col mt-4">
       <%= simple_form_for :mushrooom, url: mushrooms_path, method: :get do |f| %>
         <% mushroom_properties.map do |property| %>
           <%= select_tag property, options_for_select(instance_variable_get("@#{property}"), params[property.to_sym]), class: "dropdown" , prompt: property, include_blank: false %>
         <% end %>
-        <%= button_tag(type: "submit", class: "btn btn-flat btn-filter") do %>
+        <%= button_tag "submit", class: "btn btn-flat btn-filter" do %>
           <i class="fa-solid fa-filter"></i> Filter
         <% end %>
+      <% end %>
+      <%= link_to mushrooms_path, class: "btn btn-flat btn-filter" do %>
+        <i class="fa-solid fa-xmark"></i> Reset
       <% end %>
     </div>
   </div>
