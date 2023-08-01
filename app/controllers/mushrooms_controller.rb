@@ -20,9 +20,9 @@ class MushroomsController < ApplicationController
   def filter
     if (wheres = params.select { |key, value| MUSHROOM_PROPERTIES.include?(key.to_sym) && value.present? })
       wheres.permit!
-      @mushrooms = Mushroom.where(wheres).limit(25)
+      @mushrooms = Mushroom.where(wheres).limit(50)
     else
-      @mushrooms = Mushroom.all.limit(25)
+      @mushrooms = Mushroom.all.limit(50)
     end
   end
 end
