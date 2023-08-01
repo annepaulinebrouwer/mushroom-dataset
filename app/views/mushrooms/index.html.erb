@@ -28,7 +28,7 @@
         <% mushroom_properties.map do |property| %>
           <%= select_tag property, options_for_select(instance_variable_get("@#{property}"), params[property.to_sym]), class: "dropdown" , prompt: property, include_blank: false %>
         <% end %>
-        <%= button_tag(type: "submit", class: "btn btn-flat") do %>
+        <%= button_tag(type: "submit", class: "btn btn-flat btn-filter") do %>
           <i class="fa-solid fa-filter"></i> Filter
         <% end %>
       <% end %>
