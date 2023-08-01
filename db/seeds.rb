@@ -1,5 +1,6 @@
 require 'csv'
 
+puts "Adding mushrooms to the database..."
 filepath = "db/mushroom_dataset.csv"
 CSV.foreach(filepath, headers: :first_row) do |row|
   Mushroom.create(
@@ -28,3 +29,4 @@ CSV.foreach(filepath, headers: :first_row) do |row|
     habitat: row["habitat"]
   )
 end
+puts "Finished!"

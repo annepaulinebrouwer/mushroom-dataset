@@ -1,20 +1,35 @@
 <div class="container">
   <div class="row">
     <div class="col">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_url 'mushroom-banner.png' %>)">
         Find your mushroom
       </div>
     </div>
   </div>
 
+
   <div class="row">
     <div class="col">
-      <%= simple_form_for :search, url: root_path, method: :get do |f| %>
+      <%= simple_form_for :search, url: mushrooms_path, method: :get do |f| %>
         <div class="search-form-control form-group">
           <input class="form-control string required" type="text" name="search[query]" id="search_query" />
-          <button name="button" type="submit" class="btn btn-flat">
+          <button type="submit" class="btn btn-flat">
             <i class="fas fa-search"></i> Search
           </button>
         </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <h2>Filters</h2>
+      <%= simple_form_for :mushrooom, url: mushrooms_path, method: :get do |f| %>
+        <%= select_tag "edible", options_for_select(@edible, params[:edible]), class: "dropdown" , prompt: "Edible" %>
+        <%= select_tag "cap_shape", options_for_select(@cap_shape, params[:cap_shape]), class: "dropdown", include_blank: "Cap shape" %>
+        <%= button_tag(type: "submit", class: "btn btn-flat") do %>
+          <i class="fa-solid fa-filter"></i> Filter
+        <% end %>
       <% end %>
     </div>
   </div>
