@@ -25,8 +25,9 @@
     <div class="col">
       <h2>Filters</h2>
       <%= simple_form_for :mushrooom, url: mushrooms_path, method: :get do |f| %>
-        <%= select_tag "edible", options_for_select(@edible, params[:edible]), class: "dropdown" , prompt: "Edible" %>
-        <%= select_tag "cap_shape", options_for_select(@cap_shape, params[:cap_shape]), class: "dropdown", include_blank: "Cap shape" %>
+        <% mushroom_properties.map do |property| %>
+          <%= select_tag property, options_for_select(instance_variable_get("@#{property}"), params[property.to_sym]), class: "dropdown" , prompt: property, include_blank: false %>
+        <% end %>
         <%= button_tag(type: "submit", class: "btn btn-flat") do %>
           <i class="fa-solid fa-filter"></i> Filter
         <% end %>
